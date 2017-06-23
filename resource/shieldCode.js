@@ -1,24 +1,33 @@
 (function() {
-  var shieldUuid = <shieldUUID>;
-  var shieldName = 'contact-shield';
-  var hazardTitle = 'The service door has been opened.';
+	var shieldUuid = <shieldUUID>;	// replace with a new UUID
+	var shieldName = 'wallyHumidityShield2';
+	var hazardUuid = 'Humidity';
+	var hazardTitle = 'A potential water leak (2) was detected by the humidity sensor.';
+	var delay = 20000;
 
-  var delay = 5000;
-  var preProcessing = undefined;
+	var safelet = function(payload) {
+		return payload.traitStates.traitStates.Humidity.humidityPct*1>40;
+	};
 
-  function safelet(payload) {
-    /* Value can be either closed or opened as string. */
-    return (payload.d.states.contact.value === 'open');
-  }
+	var entryCondition = function(payload) {
+		return payload.traitStates && payload.traitStates.traitStates && payload.traitStates.traitStates.Humidity;
+	};
 
-  function entryCondition(payload) {
-    return (payload.d && payload.d.states && (payload.d.states.contact !== undefined));
-  }
+	var message = function(payload) {
+		payload.extra = payload.extra || {};
+		payload.extra.isHandled = false;
+		payload.extra.urgent = true;
 
-  function message(payload) {
-    var hazardUuid = shieldName + '_' + Date.now();
-    return (constructMessage(payload, shieldUuid, hazardUuid, hazardTitle));
-  }
+		var msg = hazardTitle;
+		if( payload.location) {
+			payload.extra.locationDesc = payload.location.appliance;
+			payload.extra.deviceDesc = payload.location.floor;
 
-  registerShield(shieldUuid, shieldName, entryCondition, preProcessing, safelet, message, delay);
+			msg = hazardTitle + ' Location: ' + payload.location.appliance + ', ' + payload.location.room + ', ' + payload.location.floor;
+		}
+
+		return constructMessage(payload, shieldUuid, hazardUuid, msg);
+	};
+
+	registerShield(shieldUuid, shieldName, entryCondition, undefined, safelet, message, delay);
 })();

@@ -55,21 +55,22 @@ var requestCreateShieldCode = function( config, shieldCode, cb) {
   });
 };
 
+// shieldUUID must be a number
 var createShieldCode = function( config, shieldUUID, cb) {
 	var code = fs.readFileSync("./resource/shieldCode.js");
-	
+
 	var shieldname = "shield"+shieldUUID.toString();
-	
+
 	var jscode = code.toString();
 	jscode = jscode.replace( /<shieldUUID>/g, shieldUUID);
-	
+
 	// Create a sample shield code.
 	var shieldCode = {
-	  "shieldUUID": shieldUUID,	// the shield must exist, see createShield.js and MUST be a number in numeric format, ex: 9
+	  "shieldUUID": shieldUUID.toString(), // the shieldUUID must be a number
 	  "type": "shield",
 	  "code": jscode
 	};
-	
+
 	csrfRequests.requestAPIWithCSRF( requestCreateShieldCode, config, shieldCode, cb);
 }
 

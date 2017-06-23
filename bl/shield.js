@@ -57,14 +57,14 @@ var requestCreateShield = function( config, shield, cb) {
 
 
 createShield = function( config, shieldUUID, cb) {
-	
+
 	// Create a sample shield.
 	var shield = {
-	  "UUID": shieldUUID.toString(),	// MUST be unique, and MUST be number but in string format ex: "9" 
-	  "name": "Contact Shield",
+	  "UUID": shieldUUID.toString(),	// MUST be unique, and MUST be number but in string format ex: "9"
+	  "name": "Wally Humidity Shield 2",
 	  "type": "Home",
-	  "description": "Open window/door detection using EnOcean devices",
-	  "image": "contact",
+	  "description": "Wally Humidity Shield 2",
+	  "image": "waterShield",
 	  "canBeDisabled": false,
 	  "hazardDetectionOnCloud": true,
 	  "actions": [
