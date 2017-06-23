@@ -94,7 +94,7 @@ By following the steps below you can exercise all the critical paths in the syst
   Example: node createShield.js 10
   ```
 
-3. Attach the shield code to your newly created shield. The command will use the source code from the `resources/shieldCode.js` file. **Important** If you modify the shield code you must also modify `bl/hazard.js` such that the simulated sensor event will have the payload expected by your shield.
+3. Attach the shield code to your newly created shield. The command will use the source code from the `resources/shieldCode.js` file. **Important** If you modify the shield code you **MUST** also modify `bl/hazard.js` such that the simulated sensor event will have the payload expected by your shield.
 
   ```
   Syntax: node createShieldCode.js <shieldUUID>
@@ -123,7 +123,8 @@ An IoT4I shield is comprised of:
 - the shield code: the JavaScript code that is executed in the shield Engine. The shield code also has a metadata section that connects it to the shield
 - one or more associations to IoT4I users
 
-The elements of the shield are connected together through the shieldUUID. The shield UUID MUST be a number provided in string format in the shield metadata, shield code metadata and shield association. The shieldUUID must be introduced as a number in the jsCode.
+The elements of the shield are connected together through the shieldUUID. The shieldUUID **MUST** be a number in string format ( ex: "100") in the shield metadata, shield code metadata and shield association. The shieldUUID **MUST** be a number (100) in the jsCode. The UUID used **MUST** be the same in the shield, shield code and shield association.
+
 
 Shield
 ```JSON
@@ -185,7 +186,7 @@ As the Shield Engine runs shields on incoming sensor events it wil generate new 
 npm run listener
 ```
 
-Before you do can run this tool you must configure it to connect to the IoT Platform instance used by IoT4I. For that need to copy the IoTF connection information from the Bluemix "Runtime" tab ofr Action Engine, API or Transformer into  `tools/local-vcap.json`. The data will look like:
+Before you do can run this tool you **MUST** configure it to connect to the IoT Platform instance used by IoT4I. For that need to copy the IoTF connection information from the Bluemix "Runtime" tab ofr Action Engine, API or Transformer into  `tools/local-vcap.json`. The data will look like:
 
 ```
 {
