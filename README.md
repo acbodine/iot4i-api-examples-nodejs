@@ -6,15 +6,11 @@ The IoT4I API Examples provides examples of using the API of the IBM Bluemix [Io
 
 The sample demonstrates the expected flow of the IoT for Insurance
 
-1. Create a user
-
-2. Create a device associated to the user
-
-3. Create a new shield
-
-4. Associate the shield with the user
-
-5. Simulate an event for the device
+1. Create a user  
+2. Create a device associated to the user  
+3. Create a new shield  
+4. Associate the shield with the user  
+5. Simulate an event for the device  
 
 ## Requirements
 
@@ -47,34 +43,23 @@ To better understand this example and the IoT for Insurance API this section con
 
 ### Preparing to run
 
-1. If you do not already have a Bluemix account, [sign up here](https://new-console.ng.bluemix.net/registration)
-
-2. If you have not already, [download node.js](https://nodejs.org/download/) and install it on your local machine.
-
-3. If you have not already, [download Git](https://git-scm.com/downloads/) and install it on your local machine.
-
-4. Clone the app to your local environment from your terminal using the following command:
+1. If you do not already have a Bluemix account, [sign up here](https://new-console.ng.bluemix.net/registration)  
+2. If you have not already, [download node.js](https://nodejs.org/download/) and install it on your local machine.  
+3. If you have not already, [download Git](https://git-scm.com/downloads/) and install it on your local machine.  
+4. Clone the app to your local environment from your terminal using the following command:  
   ```
   git clone https://github.com/IBM-Bluemix/iot4i-api-examples-nodejs.git
-  ```
-
-5. `cd` into this newly created directory
-
-6. Install the required npm and bower packages using the following command
-
+  ```  
+5. `cd` into this newly created directory  
+6. Install the required npm and bower packages using the following command  
   ```
   npm install
-  ```
-
-7. Create an IoT for Insurance service on Bluemix
-
-8. Use the `Deploy` button from the service console to deploy all the required application parts and depending services. This may take a few minutes. If you don't see the `Deploy` button, make sure your organization has at least **2GB of memory available**.
-
-9. Update the credentials in `config.js` with the data available in the IoT4I `Service Credentials` page on Bluemix. The URI of the API looks like https://iot4insurance-api-&lt;uuid&gt;.mybluemix.net/ If running in a different region than US the URL will contain the region's name too.
-
-  NOTE: when copying the URI of the API in config.js make sure it does not contain a trailing /
-
-  NOTE: the aggregator URL listed in config.js is optional. The URL is not available in the Service Credentials and can be obtained from the Bluemix page of the aggregator application created by IoT4 for Insurance.
+  ```  
+7. Create an IoT for Insurance service on Bluemix  
+8. Use the `Deploy` button from the service console to deploy all the required application parts and depending services. This may take a few minutes. If you don't see the `Deploy` button, make sure your organization has at least **2GB of memory available**.  
+9. Update the credentials in `config.js` with the data available in the IoT4I `Service Credentials` page on Bluemix. The URI of the API looks like https://iot4insurance-api-&lt;uuid&gt;.mybluemix.net/ If running in a different region than US the URL will contain the region's name too.  
+  NOTE: when copying the URI of the API in config.js make sure it does not contain a trailing /  
+  NOTE: the aggregator URL listed in config.js is optional. The URL is not available in the Service Credentials and can be obtained from the Bluemix page of the aggregator application created by IoT4 for Insurance.  
 
 ### End to end flow
 
@@ -146,7 +131,7 @@ Shield
 ```
 
 Shield Code
-```JSON
+```json
 {
   "shieldUUID": "100",
   "type": "shield",
