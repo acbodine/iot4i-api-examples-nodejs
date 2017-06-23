@@ -148,9 +148,9 @@ Shield
 Shield Code
 ```JSON
 {
-  "shieldUUID": "100",
-  "type": "shield",
-  "code": "<jscode>"
+  shieldUUID: "100",
+  type: "shield",
+  code: "<jscode>"
 }
 ```
 
