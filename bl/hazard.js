@@ -58,11 +58,18 @@ var simulateHazard = function( config, username, cb) {
 	var parameters = {
 	  "payload": {
 	      "usr": username,	// user id must exist ( see createUser.js)
+          "traitStates": {
+            "traitStates": {
+                "Humidity": {
+                    "humidityPct": 75
+                }
+            }
+          },
 	      "d" : {
 	    	  "states" : {
 	    		  "contact" : {
-	    			  "value" : "open" 
-	    		  } 
+	    			  "value" : "open"
+	    		  }
 	    	  }
 	      },
 	      "extra": {
@@ -75,7 +82,7 @@ var simulateHazard = function( config, username, cb) {
 	    "deviceid": "wink",
 	    "type": "wink"
 	  };
-	
+
 	csrfRequests.requestAPIWithCSRF( requestSimulateHazard, config, parameters, cb);
 }
 
