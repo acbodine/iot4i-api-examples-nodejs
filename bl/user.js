@@ -52,7 +52,7 @@ var requestCreateUser = function( config, user, cb) {
 
 var createUser = function( config, userid, cb) {
 
-  var deviceid = Buffer.from(userid).toString('base64');
+  var deviceid = Buffer.from(userid).toString('base64').replace(/=/, '');
   deviceid = deviceid.slice(0, -1);
 
 	// Create a sample user. If a user with the same username exists in the database the function will fail.

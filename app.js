@@ -46,9 +46,9 @@ if ( iot4i_service != null) {
 			username: iot4i_service.credentials.userid,
 			password: iot4i_service.credentials.password
 		}
-	} 
+	}
 } else {
-	
+
 	try{
 		config = require('./config.js');
 	} catch( error) {
@@ -75,88 +75,88 @@ server.use(session({
 
 var createUser = function( req, resp) {
 	console.log( "Create user.");
-	
-	iot4i_user.createUser( config, Date.now(), function(data, error) {
+
+	iot4i_user.createUser( config, Date.now().toString(), function(data, error) {
 		//console.log(">>> DATA: " + data);
 		//console.log(">>> ERROR: " + error);
-		
+
 		if ( data) {
 			console.dir( data);
 			resp.send( data);
 		} else {
 			resp.send( error);
 		}
-		
+
 	});
 }
 
 var createShield = function( req, resp) {
 	console.log( "Create shield.");
-	
+
 	iot4i_shield.createShield( config, Date.now(), function(data, error) {
 		//console.log(">>> DATA: " + data);
 		//console.log(">>> ERROR: " + error);
-		
+
 		if ( data) {
 			console.dir( data);
 			resp.send( data);
 		} else {
 			resp.send( error);
 		}
-		
+
 	});
 }
 
 var createShieldCode = function( req, resp) {
-	
+
 	console.log( "Create shield code: " + req.body.shieldid);
-	
+
 	iot4i_code.createShieldCode( config, req.body.shieldid, function(data, error) {
 		//console.log(">>> DATA: " + data);
 		//console.log(">>> ERROR: " + error);
-		
+
 		if ( data) {
 			console.dir( data);
 			resp.send( data);
 		} else {
 			resp.send( error);
 		}
-		
+
 	});
 }
 
 var createShieldAssociation = function( req, resp) {
-	
+
 	console.log( "Create shield association: " + req.body.username + "-" + req.body.shieldid);
-		
+
 	iot4i_association.createUserShieldAssociation( config, req.body.username, req.body.shieldid, function(data, error) {
 		//console.log(">>> DATA: " + data);
 		//console.log(">>> ERROR: " + error);
-		
+
 		if ( data) {
 			console.dir( data);
 			resp.send( data);
 		} else {
 			resp.send( error);
 		}
-		
+
 	});
 }
 
 var simulateHazard = function( req, resp) {
 	console.log( "Simulate hazard: " + req.body.username);
-	
+
 	iot4i_simulate.simulateHazard( config, req.body.username, function(data, error) {
 		//console.log(">>> DATA: " + data);
 		//console.log(">>> ERROR: " + error);
-		
+
 		if ( data) {
 			console.dir( data);
 			resp.send( data);
 		} else {
 			resp.send( error);
 		}
-		
+
 	});
 }
 
