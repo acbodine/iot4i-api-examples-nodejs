@@ -75,6 +75,14 @@ createShield = function( config, shieldUUID, cb) {
 	  "shieldParameters": []
 	};
 
+    if (config.mode && config.mode == "auto") {
+        shield.type = "Auto";
+        shield.name = "Driving Behavior Shield";
+        shield.description = "Driving Behavior Shield";
+        shield.potentialClaimAmount = "1000";
+        // TODO: shield.shieldParameters = [];
+    }
+
 	csrfRequests.requestAPIWithCSRF( requestCreateShield, config, shield, cb);
 }
 

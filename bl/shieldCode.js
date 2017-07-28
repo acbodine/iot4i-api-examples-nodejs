@@ -59,6 +59,10 @@ var requestCreateShieldCode = function( config, shieldCode, cb) {
 var createShieldCode = function( config, shieldUUID, cb) {
 	var code = fs.readFileSync("./resource/shieldCode.js");
 
+    if (config.mode && config.mode == "auto") {
+        code = fs.readFileSync("./resource/driverBehaviorShieldCode.js");
+    }
+
 	var shieldname = "shield"+shieldUUID.toString();
 
 	var jscode = code.toString();

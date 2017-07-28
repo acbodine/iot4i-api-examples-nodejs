@@ -19,7 +19,7 @@ var ibmiotf = require("ibmiotf");
 var express = require("express");
 
 var readDataFromIoT = function() {
-    
+
 	var local_vcap = null;
 	try {
 		local_vcap = require('./local-vcap.json');
@@ -27,9 +27,9 @@ var readDataFromIoT = function() {
 	}
 
 	var appEnv = require('cfenv').getAppEnv({vcap: local_vcap, protocol: "https:"});
-	
+
     var iotFoundationCredentials = appEnv.getServiceCreds(/.*iotf-service.*/);
-    
+
     //	set IoT foundation credentials
     var organization = iotFoundationCredentials.org;
     var appId = "iot4i-listener";
@@ -49,16 +49,22 @@ var readDataFromIoT = function() {
     };
 
     var appClient = new ibmiotf.IotfApplication(config);
-    
+
     appClient.connect();
 
     appClient.on("connect", function() {
         appClient.subscribeToDeviceCommands("+", "+", "hazardDetected");
+        appClient.subscribeToDeviceEvents();
         console.log("INFO: IoT4I listener connected to IoTP! ");
     });
 
     appClient.on("disconnect", function() {
     	console.log("INFO: IoT4I listener disconnected from IoTP! ");
+    });
+
+    appClient.on("deviceEvent", function (deviceType, deviceId, eventType, format, payload) {
+        console.log("Device Event from :: "+deviceType+" : "+deviceId+" of event "+eventType+" with payload : ");
+        console.log(payload.toString());
     });
 
     appClient.on("deviceCommand", function(deviceType, deviceId, commandType, formatType, rawpayload, topic) {
@@ -75,6 +81,10 @@ var readDataFromIoT = function() {
             console.dir( payload);
         }
     });
+
+    appClient.on("command", function (commandName,format,payload,topic) {
+        console.dir(commandName, format, payload, topic);
+    });
 };
 
 //Start the server on port 8080
@@ -83,8 +93,8 @@ var port = process.env.PORT || 8080;
 var host = '0.0.0.0';
 
 var server = app.listen(port, host, function() {
-	
+
 	readDataFromIoT();
-	
+
 	console.log( "Server listening on %s:%d", host, port);
 });

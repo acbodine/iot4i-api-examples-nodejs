@@ -57,9 +57,9 @@ var createUser = function( config, userid, cb) {
 
 	// Create a sample user. If a user with the same username exists in the database the function will fail.
 	var user = { "username": userid,
-	  "fullname": "John Doe",
-	  "firstname": "John",
-	  "lastname": "Doe",
+	  "fullname": "Jay Dojo",
+	  "firstname": "Jay",
+	  "lastname": "Dojo",
 	  "password": "user1234",
 	  "accessLevel": 10, // set to 10 for users that have dashboard access
     "address": {
@@ -68,7 +68,7 @@ var createUser = function( config, userid, cb) {
       "city": "Raleigh",
       "country": "USA"
     },
-	  "email": userid,
+	  "email": "jay.dojo@somewhere.com",
 	  "deviceId": deviceid,
 	  "deviceType": "test",
 	  "type": "test"
